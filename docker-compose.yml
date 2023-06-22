@@ -1,0 +1,17 @@
+version: '1'
+services:
+  postgres:
+      image: postgres
+      restart: always
+      environment:
+        - POSTGRES_PASSWORD=admin123
+      ports:
+        - "5432:5432"
+  go:
+    container_name: SateliteMostrador
+    build:
+      context: .
+    ports:
+      - "8393:8393"
+    depends_on:
+      - postgres
